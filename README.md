@@ -183,11 +183,13 @@ def surface_area(request):
 
 ## SERVER SIDE PROCESSING:
 
-![alt text](s1.png)
+<img width="959" alt="s2" src="https://github.com/SmritiManikand/MathServer/assets/113674204/bd05ed9f-145f-449f-a037-ee53c4c00563">
+
 
 ## HOMEPAGE:
 
-![alt text](s2.png)
+<img width="958" alt="s1" src="https://github.com/SmritiManikand/MathServer/assets/113674204/c76492a5-9575-4c25-b6c9-12d53504ee80">
+
 
 ## RESULT:
 The program for performing server side processing is completed successfully.
