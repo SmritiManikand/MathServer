@@ -33,7 +33,6 @@ Publish the website in the given URL.
 
 ### HTML FILE
 ```
-<!DOCTYPE html>
 <html>
 
 <head>
