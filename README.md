@@ -182,7 +182,8 @@ def surface_area(request):
 
 ## SERVER SIDE PROCESSING:
 
-<img width="959" alt="s2" src="https://github.com/SmritiManikand/MathServer/assets/113674204/bd05ed9f-145f-449f-a037-ee53c4c00563">
+
+![s2](https://github.com/SmritiManikand/MathServer/assets/113674204/69da6858-e581-4000-a8c8-60e0b0df1128)
 
 
 ## HOMEPAGE:
