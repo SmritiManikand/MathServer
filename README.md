@@ -32,163 +32,114 @@ Publish the website in the given URL.
 ## PROGRAM :
 
 ### HTML FILE
+
 ```
+<!DOCTYPE html>
 <html>
-
 <head>
-   
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    
-    <title>SURFACE AREA OF RIGHT CYLINDER</title>
-
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style type="text/css">
-        *{
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-
-        body {
-            background-color: coral;
-        }
-
-        .edge {
-            display: flex;
-            height: 100vh;
-            width: 100%;    
-            justify-content: center;
-            align-items: center;
-        }
-
-        .box {
-            display: block;
-            width: 550px;
-            min-height: 300px;
-            font-size: 20px;
-            background-color: lightseagreen;
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        }
-
-        .formelt {
-            color: black;
-            text-align: center;
-            margin-top: 7px;
-            margin-bottom: 6px;
-        }
-
-        h2 {
-            color: red;
-            text-align: center;
-            padding-top: 20px;
-        }
-
-        input {
-            margin: 5px;
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-        }
-    </style>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Area of Surface</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style type="text/css">
+body {
+    background-color: coral;
+}
+.edge {
+    width: 100%;
+    padding-top: 250px;
+    text-align: center;
+}
+.box {
+    display: inline-block;
+    border: thick dashed rgb(29, 29, 231);
+    width: 500px;
+    min-height: 300px;
+    font-size: 20px;
+    background-color:rgb(191, 191, 16);
+}
+.formelt {
+    color: black;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 6px;
+}
+h1 {
+    color: rgb(42, 204, 199);
+    padding-top: 20px;
+}
+</style>
 </head>
-
 <body>
-    <div class="edge">
-        <div class="box">
-            <h2>SMRITI M (212221040157)</h2>
-            <h2>SURFACE AREA OF RIGHT CYLINDER </h2>
-
-            <form method="POST" id="cylinderForm">
-                <div class="formelt">
-                    Radius : <input type="text" name="radius" id="radius"></input><br />
-                </div>
-                <div class="formelt">
-                    Height : <input type="text" name="height" id="height"></input><br />
-                </div>
-                <div class="formelt">
-                    <input type="button" value="Calculate" onclick="calculateSurfaceArea()"></input><br />
-                </div>
-                <div class="formelt" id="result">
-                    Surface Area : <span id="surfaceAreaResult"></span><br />
-                </div>
-            </form>
-        </div>
+<div class="edge">
+    <div class="box">
+        <h1>Surface Area of Right Cylinder</h1>
+        <h3>SMRITI M(212221040157)</h3>
+        <form method="POST">
+            <div class="formelt">
+                Radius: <input type="text" name="radius" value="{{r}}">m<br/>
+            </div>
+            <div class="formelt">
+                Height: <input type="text" name="height" value="{{h}}">m<br/>
+            </div>
+            <div class="formelt">
+                <input type="submit" value="Calculate"><br/>
+            </div>
+            <div class="formelt">
+                Area: <input type="text" name="area" value="{{area}}">m<sup>2</sup><br/>
+            </div>
+        </form>
     </div>
-
-    <script>
-        function calculateSurfaceArea() {
-            var radius = document.getElementById('radius').value;
-            var height = document.getElementById('height').value;
-
-            
-            radius = parseFloat(radius);
-            height = parseFloat(height);
-
-            
-            var surfaceArea = 2 * Math.PI * radius * height + 2 * Math.PI * radius * radius;
-
-            
-            document.getElementById('surfaceAreaResult').textContent = surfaceArea.toFixed(2);
-        }
-    </script>
+</div>
 </body>
-
 </html>
+
 ```
 ### urls.py
 
 ```
 from django.contrib import admin
 from django.urls import path
-from webprocess import views
-
+from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('surface_area/', views.surface_area, name="surface_area"),  # Corrected function name
-    path('', views.surface_area, name="surface_area_root"),  # Redirect to surface_area view
+    path('squarearea/',views.squarearea,name="squarearea"),
+    path('',views.squarearea,name="squarearea")
 ]
 ```
 ### view.py
 
 ```
 from django.shortcuts import render
-import math
-
-def surface_area(request):
+def squarearea(request):
     context = {}
     context['area'] = "0"
-    context['radius'] = "0"
-    context['height'] = "0"
-    
+    context['r'] = "0"
+    context['h'] = "0"
     if request.method == 'POST':
         print("POST method is used")
-        radius = request.POST.get('radius', '0')
-        height = request.POST.get('height', '0')
-        
-        radius = float(radius)
-        height = float(height)
-        print('request=', request)
-        print('Radius=', radius)
-        print('Height=', height)
-        
-        surface_area = 2 * math.pi * radius * height + 2 * math.pi * radius ** 2
-        
-        context['area'] = str(surface_area) 
-        context['radius'] = str(radius)  
-        context['height'] = str(height)  
-        print('Area=', surface_area)
-    return render(request, 'webprocess/project.html', context)
+        print('request.POST:', request.POST)
+        r = request.POST.get('radius', '0') 
+        h = request.POST.get('height', '0') 
+        print('radius =', r)
+        print('height =', h)
+        area = 2 * 3.14 * int(r) * int(h) + 2*3.14*int(r)*int(r)
+        context['area'] = area
+        context['r'] = r
+        context['h'] = h
+        print('Area =', area)
+    
+    return render(request, 'myapp/math.html',context)
 ```
 
 ## SERVER SIDE PROCESSING:
-
 
 ![s2](https://github.com/SmritiManikand/MathServer/assets/113674204/69da6858-e581-4000-a8c8-60e0b0df1128)
 
 
 ## HOMEPAGE:
 
-<img width="958" alt="s1" src="https://github.com/SmritiManikand/MathServer/assets/113674204/c76492a5-9575-4c25-b6c9-12d53504ee80">
+<img width="955" alt="s1" src="https://github.com/SmritiManikand/MathServer/assets/113674204/6b547ab8-132b-4532-adc9-3861d03ddd03">
 
 
 ## RESULT:
