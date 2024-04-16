@@ -43,7 +43,7 @@ Publish the website in the given URL.
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <style type="text/css">
 body {
-    background-color: coral;
+    background-color: rgb(35, 42, 180);
 }
 .edge {
     width: 100%;
@@ -52,11 +52,11 @@ body {
 }
 .box {
     display: inline-block;
-    border: thick dashed rgb(29, 29, 231);
+    border: thick dashed rgb(231, 29, 46);
     width: 500px;
     min-height: 300px;
     font-size: 20px;
-    background-color:rgb(191, 191, 16);
+    background-color:rgb(16, 191, 57);
 }
 .formelt {
     color: black;
@@ -93,7 +93,6 @@ h1 {
 </div>
 </body>
 </html>
-
 ```
 ### urls.py
 
